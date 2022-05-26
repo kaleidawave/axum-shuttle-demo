@@ -9,19 +9,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          clean: false
       - name: Check source
         run: |
           cargo check
-      - name: Install shuttle cli
-        run: |
-          cargo install cargo-quickinstall
-          cargo quickinstall cargo-shuttle
-      - name: Log into shuttle
-        run: |
-          cargo shuttle login --api-key ${{ secrets.SHUTTLE_DEPLOY_KEY }}
-      - name: Deploy to shuttle
-        run:
-          cargo shuttle deploy | awk '!/Database URI.*?$/'
+      - uses: kaleidawave/shuttle-deploy-action@add-action
+        with:
+          shuttle-deploy-key: ${{ secrets.SHUTTLE_DEPLOY_KEY }}
