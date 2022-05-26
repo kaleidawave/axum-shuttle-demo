@@ -9,9 +9,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Check source
-        run: |
-          cargo check
+        run: cargo check
       - uses: kaleidawave/shuttle-deploy-action@add-action
         with:
           shuttle-deploy-key: ${{ secrets.SHUTTLE_DEPLOY_KEY }}
