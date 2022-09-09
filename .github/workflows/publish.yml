@@ -6,12 +6,9 @@ on:
       - "main"
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Check source
-        run: cargo check
-      - uses: kaleidawave/shuttle-deploy-action@add-action
+      - uses: shuttle-hq/deploy-action@main
         with:
           shuttle-deploy-key: ${{ secrets.SHUTTLE_DEPLOY_KEY }}
